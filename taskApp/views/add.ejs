@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/stylesheets/style.css">
+    </head>
+    <body class="container">
+        <%- include('header', title) %>
+        <p><%= message %></p>
+        <form action="/add", method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">タスク名</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="mb-3">
+                <label for="choice" class="form-label">カテゴリ</label>
+                <input type="text" class="form-control" id="category" name="category">
+            </div>
+            <div class="mb-3 deadline" id="deadline-div">
+                <label for="deadline" class="form-label">締め切り</label>
+                <input type="date" class="form-control" id="deadline" name="deadline">
+                <input type="text" class="form-control" id="deadlineDescription" name="deadlineDescription" placeholder="何の締め切りか入力してください">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addDeadlineField()">締め切りを追加</button>
+            <div class="date">
+                <div class="mb-3" id="date-div">
+                    <label for="startDay" class="form-label">開始日</label>
+                    <input type="date" class="form-control" id="startDay" name="startDay">
+                    <label for="endDay" class="form-label">終了日</label>
+                    <input type="date" class="form-control" id="endDay" name="endDay">
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addDateField()">日時を追加</button>
+            <div class="mb-3">
+                <label class="form-label">提出状況</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="submissionStatus" id="submitted" value="submitted">
+                    <label class="form-check-label" for="submitted">
+                        提出済み
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="submissionStatus" id="notSubmitted" value="notSubmitted">
+                    <label class="form-check-label" for="notSubmitted">
+                        未提出
+                    </label>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary" value="送信">
+
+        </form>
+        </table>
+        <%- include('footer') %>
+        <script src="/javascripts/edit_deadline.js"></script>
+        <script src="/javascripts/edit_date.js"></script>
+    </body>
+</html>
