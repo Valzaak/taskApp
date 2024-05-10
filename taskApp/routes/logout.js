@@ -4,17 +4,12 @@ const router = express.Router();
 
 router.get('/', function(req, res, next) {
     req.flash('info', 'ログアウトしました。');
+    req.session.userId = undefined;
+    res.locals.userId = undefined;
+    req.session.userName = undefined;
+    res.locals.userName = undefined;
     console.log(req.session);
-    req.session.destroy((err) => {
-        if (err) {
-            console.log(err);
-            next(err);
-        } else {
-            console.log('session destroyed.')
-            res.redirect('/');
-        }
-    }
-);
+    res.redirect('/');
 });
 
 module.exports = router;

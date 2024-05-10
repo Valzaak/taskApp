@@ -12,10 +12,13 @@ const flash = require('connect-flash');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const addRouter = require('./routes/add');
-const dbRouter = require('./routes/db');
+const dbRouter = require('./routes/list');
 const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
+const listRouter = require('./routes/list');
+const contentRouter = require('./routes/content');
+const editRouter = require('./routes/edit');
 
 const app = express();
 
@@ -43,14 +46,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+    if (req.session.userId) {
+        res.locals.userId = req.session.userId;
+        res.locals.userName = req.session.userName;
+    }
+    next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/add', addRouter);
-app.use('/db', dbRouter);
+app.use('/list', dbRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
+app.use('/list', listRouter);
+app.use('/content', contentRouter);
+app.use('/edit', editRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -59,13 +72,6 @@ app.use(function(req, res, next) {
 
 
 
-const loginCheck = (req, res, next) => {
-  if (req.session.userId) {
-    next();
-  } else {
-    res.redirect('/');
-  }
-}
 
 // error handler
 app.use(function(err, req, res, next) {

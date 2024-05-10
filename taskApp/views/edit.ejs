@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タスク編集</title>
+</head>
+<body>
+    <%- include('header')%>
+    <form action="/edit/<%= taskId %>"  method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">タスク名</label>
+            <input type="text" class="form-control" id="name" name="name" value="<%= task.name %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="choice" class="form-label">カテゴリ</label>
+            <input type="text" class="form-control" id="category" name="category" value="<%= task.category %>" required>
+        </div>
+        <div class="mb-3 deadline" id="deadline-div">
+            <% deadlines.forEach((element, i) => { %>
+                <div>
+                    <label for="deadline" class="form-label">締め切り</label>
+                    <input type="date" class="form-control" id="deadline" name="deadline" value="<%= element.deadline %>" required>
+                    <input type="text" class="form-control" id="deadlineDescription" name="deadlineDescription"
+                        placeholder="何の締め切りか入力してください" value="<%= element.description %>" required>
+                    <% if (i !== 0) { %>
+                        <button type="button" class="btn btn-primary" onclick="deleteDeadlineField()">delete</button>
+                    <% } %>
+                </div>
+            <% }) %>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="addDeadlineField()">締め切りを追加</button>
+        <div class="date-div" id="date-div">
+            <% days.forEach((element, i) => { %>
+                <div>
+                    <label for="startDay" class="form-label">開始日</label>
+                    <input type="date" class="form-control" id="startDay" name="startDay" value="<%= element.startDay %>">
+                    <label for="endDay" class="form-label">終了日</label>
+                    <input type="date" class="form-control" id="endDay" name="endDay" value="<%= element.endDay %>">
+                    <% if (i !== 0) { %>
+                        <button type="button" class="btn btn-primary" onclick="deleteDateField()">delete</button>
+                    <% } %>
+                </div>
+            <% }) %>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="addDateField()">日時を追加</button>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="isSubmit" id="submitted" value="true" <% if(task.isSubmit) {
+                %>checked<% } %> required>
+                <label class="form-check-label" for="submitted">
+                    提出済み
+                </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="isSubmit" id="notSubmitted" value="false" <% if(!task.isSubmit) {
+                %>checked<% } %> required>
+                <label class="form-check-label" for="notSubmitted">
+                    未提出
+                </label>
+        </div>
+        </div>
+        <button type="submit" class="btn btn-primary">送信</button>
+    </form>
+
+    <%- include('footer') %>
+
+    <script src="/javascripts/edit_deadline.js"></script>
+    <script src="/javascripts/edit_date.js"></script>
+</body>
+</html>

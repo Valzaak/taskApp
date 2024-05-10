@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タスク内容</title>
+</head>
+<body>
+    <%- include('header') %>
+    <h1>タスク<%= task.id %>の詳細</h1>
+    <div>
+        <p>タスク名：<%= task.name %></p>
+        <p>カテゴリ：<%= task.category %></p>
+    </div>
+    <div>
+    <% deadlines.forEach((element, i) => { %>
+        <p>締め切り<%= i+1 %>：<%= element.deadline %>（<%= element.description %>）</p>
+    <% }) %>
+    </div>
+    <div>
+    <% days.forEach((element, i) => { %>
+        <div>
+            <p>開始日<%= i+1 %>：<%= element.startDay %></p>
+            <p>終了日<%= i+1 %>：<%= element.endDay %></p>
+        </div>
+    <% }) %>
+    </div>
+    <button id="editButton">編集</button>
+
+    <%- include('footer') %>
+
+
+    <script>
+        document.getElementById('editButton').addEventListener("click", () => {
+            window.location.href = '/edit/<%= task.id %>'
+        });
+    </script>
+</body>
+
+</html>

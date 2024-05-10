@@ -24,6 +24,7 @@ router.post('/', async (req, res, next) => {
     });
 
     req.session.userId = user.id;
+    req.session.userName = user.name;
     console.log(req.session);
 
     res.redirect('/');

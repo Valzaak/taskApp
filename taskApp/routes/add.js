@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', async (req, res, next) => {
-  console.log(req.body);
   const name = req.body.name;
   const category = req.body.category;
   const deadline = req.body.deadline;
@@ -75,7 +74,7 @@ router.post('/', async (req, res, next) => {
     });
   } else {
     const startDate = new Date(startDay);
-    const startDateString = startDate.toISOString().split('T')[0];
+    // const startDateString = startDate.toISOString().split('T')[0];
     if (!(endDay === '')) {
       const endDate = new Date(endDay);
       // const endDateString = endDate.toISOString().split('T')[0];

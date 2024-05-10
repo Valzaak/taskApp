@@ -25,7 +25,11 @@ router.post('/', async (req, res, next) => {
 
         if (isMatch) {
             req.session.userId = user.id;
+            res.locals.userId = user.id;
+            req.session.userName = user.name;
+            res.locals.userName = user.name;
             req.flash('info', 'ログインしました。');
+            console.log(req.session)
             res.redirect('/');
         } else {
             res.redirect('/login');
