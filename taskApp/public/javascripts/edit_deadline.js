@@ -4,7 +4,7 @@ const addDeadlineField = () => {
     div.innerHTML = `
         <label for="deadline" class="form-label">締め切り</label>
         <input type="date" class="form-control" id="deadline" name="deadline">
-        <input type="text" class="form-control" id="deadlineDescription" name="deadlineDescription">
+        <input type="text" class="form-control" id="deadlineDescription" name="deadlineDescription" placeholder="何の締め切りか入力してください">
         <button type="button" class="btn btn-primary" onclick="deleteDeadlineField()">delete</button>
         `;
 

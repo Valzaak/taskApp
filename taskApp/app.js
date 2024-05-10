@@ -3,22 +3,35 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mysql = require('mysql');
+const session = require('express-session');
+const flash = require('connect-flash');
 
-// Database connection
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'hiroki135',
-  database: 'taskapp',
-});
+
 
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const addRouter = require('./routes/add');
+const dbRouter = require('./routes/db');
+const registerRouter = require('./routes/register');
+const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
 
-var app = express();
+const app = express();
+
+const session_opt = {
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 60 * 60 * 1000 }
+};
+app.use(session(session_opt));
+app.use(flash());
+
+app.use(function (req, res, next) {
+    res.locals.messages = req.flash();
+    next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,11 +47,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/add', addRouter);
+app.use('/db', dbRouter);
+app.use('/register', registerRouter);
+app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+
+
+const loginCheck = (req, res, next) => {
+  if (req.session.userId) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+}
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -50,5 +77,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

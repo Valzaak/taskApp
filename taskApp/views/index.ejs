@@ -5,8 +5,10 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <%- include('header', title) %>
-    <p>Welcome to <%= title %></p>
+    <%- include('header') %>
+    <% if (messages.info) { %>
+      <h3 class="info"><%= messages.info %></h3>
+    <% } %>
     <%- include('footer') %>
   </body>
 </html>
