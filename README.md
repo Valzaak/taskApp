@@ -1,4 +1,6 @@
 # 自作のタスク管理アプリです
+タスクが増えてきて管理するのが大変になったので、自分で作ってみようと思い、今回作成に至りました。
+まだまだ、追加したい機能があるので、随時アップデートする予定です。
 
 ## 使用言語
 
@@ -33,5 +35,6 @@ MySQLは別でインストールする必要があります。
 ![image](https://github.com/Valzaak/taskApp/assets/129035968/edd15fde-5570-4db6-a9b9-616da44cb4f5)
 ![image](https://github.com/Valzaak/taskApp/assets/129035968/c94d7c5a-7adf-4285-8ff4-e8b4f3293490)
 ![image](https://github.com/Valzaak/taskApp/assets/129035968/ba4a9f46-c6d2-4ade-9c0a-98be31b0a9d1)
+![image](https://github.com/Valzaak/taskApp/assets/129035968/9a1d7c63-6196-4774-8e1d-0fa695586935)
 
 
