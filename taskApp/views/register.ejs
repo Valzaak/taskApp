@@ -10,6 +10,13 @@
 </head>
 <body>
     <%- include('header') %>
+    <div class="flash-message">
+        <% if (messages.info) { %>
+            <h3 class="info">
+                <%= messages.info %>
+            </h3>
+            <% } %>
+    </div>
     <div class="user">
         <div class="user-title">
             <h1 class="display-1 text-center">ユーザー登録</h1>

@@ -141,4 +141,41 @@ body {
 
 .card-text {
   font-weight: bold;
+  font-size: 20px;
 }
+
+.eventDate > div {
+  margin-right: 20px;
+}
+
+.btn {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.deadline-container {
+  margin-bottom: 15px;
+}
+
+.deadline-date {
+  width: 150px;
+}
+
+.form-container {
+  margin: 20px auto;
+  width: 1000px;
+}
+
+.deadline-description {
+  width: 600px;
+}
+
+.radio-box {
+  display: flex;
+  margin: 20px 0;
+}
+
+.radio-box label {
+  margin-right: 20px;
+}
+

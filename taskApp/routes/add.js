@@ -88,7 +88,11 @@ router.post('/', async (req, res, next) => {
     }
   }
 
-
+  if (task) {
+    req.flash('info', 'タスクを追加しました。');
+  } else {
+    req.flash('info', 'タスクを追加できませんでした。');
+  }
   res.redirect('/add');
 });
 

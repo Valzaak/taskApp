@@ -19,6 +19,7 @@ router.post('/', async (req, res, next) => {
     });
 
     if (user === null) {
+        req.flash('info', 'ユーザーが存在しません。');
         res.redirect('/login');
     } else {
         const isMatch = await bcrypt.compare(password, user.password);
@@ -32,6 +33,7 @@ router.post('/', async (req, res, next) => {
             console.log(req.session)
             res.redirect('/');
         } else {
+            req.flash('info', 'パスワードが違います。');
             res.redirect('/login');
         }
     }

@@ -11,8 +11,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', async (req, res, next) => {
-
     const name = req.body.name;
+    const isUser = await prisma.user.findUnique({
+        where: {
+            name: name,
+        }
+    });
+
+    if (isUser !== null) {
+        req.flash('info', 'すでにその名前のユーザーが存在します。');
+        res.redirect('/register');
+    }
+
+
     const password = req.body.password;
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -27,6 +38,7 @@ router.post('/', async (req, res, next) => {
     req.session.userName = user.name;
     console.log(req.session);
 
+    req.flash('info', '登録しました。ようこそ！');
     res.redirect('/');
 });
 

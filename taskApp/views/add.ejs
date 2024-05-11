@@ -6,53 +6,80 @@
             integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <link rel="stylesheet" href="/stylesheets/style.css">
     </head>
-    <body class="container">
-        <%- include('header', title) %>
-        <p><%= message %></p>
-        <form action="/add", method="post">
+    <body>
+        <%- include('header')%>
+        <div class="flash-message">
+            <% if (messages.info) { %>
+                <h3 class="info">
+                    <%= messages.info %>
+                </h3>
+                <% } %>
+        </div>
+        <form action="/add" method="post" class="form-container">
             <div class="mb-3">
                 <label for="name" class="form-label">タスク名</label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="mb-3">
                 <label for="choice" class="form-label">カテゴリ</label>
-                <input type="text" class="form-control" id="category" name="category" required>
+                <input type="text" class="form-control" id="category" name="category"
+                    required>
             </div>
             <div class="mb-3 deadline" id="deadline-div">
-                <label for="deadline" class="form-label">締め切り</label>
-                <input type="date" class="form-control" id="deadline" name="deadline" required>
-                <input type="text" class="form-control" id="deadlineDescription" name="deadlineDescription" placeholder="何の締め切りか入力してください" required>
-            </div>
-            <button type="button" class="btn btn-primary" onclick="addDeadlineField()">締め切りを追加</button>
-            <div class="date">
-                <div class="mb-3" id="date-div">
-                    <label for="startDay" class="form-label">開始日</label>
-                    <input type="date" class="form-control" id="startDay" name="startDay" required>
-                    <label for="endDay" class="form-label">終了日</label>
-                    <input type="date" class="form-control" id="endDay" name="endDay" required>
+                <div class="mb-3 d-flex">
+                    <div class="mb-3">
+                        <label for="deadline" class="form-label">締め切り</label>
+                        <input type="date" class="form-control mb-2 deadline-date" id="deadline" name="deadline"
+                             required>
+                        <input type="text" class="form-control deadline-description" id="deadlineDescription"
+                            name="deadlineDescription" placeholder="何の締め切りか入力してください"
+                             required>
+                    </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" onclick="addDateField()">日時を追加</button>
-            <div class="mb-3">
-                <label class="form-label">提出状況</label>
+            <button type="button" class="btn btn-primary mybtn mb-4" onclick="addDeadlineField()">締め切りを追加</button>
+            <div class="date-div" id="date-div">
+                <div class="mb-3 d-flex">
+                    <div class="d-flex align-items-center eventDate">
+                        <div>
+                            <label for="startDay" class="form-label">開始日</label>
+                            <input type="date" class="form-control" id="startDay" name="startDay"
+                                >
+                        </div>
+                        <div>
+                            <p class="mb-0 between">～</p>
+                        </div>
+                        <div>
+                            <label for="endDay" class="form-label">終了日</label>
+                            <input type="date" class="form-control" id="endDay" name="endDay"
+                                >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary mybtn" onclick="addDateField()">日時を追加</button>
+            <div class="radio-box">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="isSubmit" id="submitted" value="true" required>
-                    <label class="form-check-label" for="submitted">
-                        提出済み
-                    </label>
+                    <input class="form-check-input" type="radio" name="isSubmit" id="submitted"  required>
+                        <label class="form-check-label" for="submitted">
+                            提出済み
+                        </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="isSubmit" id="notSubmitted" value="false" required>
-                    <label class="form-check-label" for="notSubmitted">
-                        未提出
-                    </label>
+                    <input class="form-check-input" type="radio" name="isSubmit" id="notSubmitted"  required>
+                        <label class="form-check-label" for="notSubmitted">
+                            未提出
+                        </label>
                 </div>
             </div>
-            <input type="submit" class="btn btn-primary" value="送信">
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary mybtn">送信</button>
+            </div>
         </form>
-        </table>
-        <%- include('footer') %>
-        <script src="/javascripts/edit_deadline.js"></script>
-        <script src="/javascripts/edit_date.js"></script>
+
+            <%- include('footer') %>
+
+                <script src="/javascripts/edit_deadline.js"></script>
+                <script src="/javascripts/edit_date.js"></script>
     </body>
 </html>
