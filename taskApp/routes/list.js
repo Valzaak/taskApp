@@ -25,8 +25,7 @@ router.get('/', async (req, res, next) => {
     });
     console.log(tasks);
     const data = {
-        title: "Task List",
-        message: `all tasks of ${req.session.userName}`,
+        user: req.session.userName,
         tasks: tasks,
         deadlines: deadlines,
     }

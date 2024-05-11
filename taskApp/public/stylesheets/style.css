@@ -4,6 +4,141 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+
+
+.background {
+  background: url('/images/todo2.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.info {
+  background-color: rgb(167, 206, 219);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.description {
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px 0;
+  line-height: 1.6;
+}
+
+.description p {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.index-title {
+  margin: 20px;
+}
+
+.index-title h3 {
+  font-size: 40px;
+  margin: 0;
+}
+
+.hero {
+  display: flex;
+}
+
+.index-description {
+  background-color: lightgray;
+  border-radius: 10px;
+  margin: 20px;
+  width: 50%;
+}
+
+.img {
+  margin: 20px;
+}
+
+.user {
+  margin: 20px;
+  padding: auto;
+  background-color: lightgray;
+}
+
+.user-title {
+  padding-top: 20px;
+  margin: 20px;
+}
+
+.user-title h1 {
+  font-size: 30px;
+}
+
+.container {
+  width: 60%;
+}
+
+.mybtn {
+  background-color: rgb(167, 206, 219);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.form-label {
+  font-size: 20px;
+}
+
+.table {
+  width: 70%;
+}
+
+.col {
+  font-size: 20px;
+}
+
+.element {
+  margin: 20px;
+  padding: auto;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.list-title h1 {
+  /* background-color: lightgray; */
+  margin: 20px;
+  padding: auto;
+  width: 500px
+}
+
+.list-description p {
+  font-size: 20px;
+  background-color: lightgray;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  width: 500px;
+  vertical-align: middle;
+}
+
+.content-container {
+  margin: 20px 0;
+  padding: auto;
+}
+
+.content-title {
+  background-color: lightgray;
+  padding: 10px;
+  width: 500px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.card-text {
+  font-weight: bold;
 }
