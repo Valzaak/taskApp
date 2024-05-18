@@ -19,6 +19,7 @@ const logoutRouter = require('./routes/logout');
 const listRouter = require('./routes/list');
 const contentRouter = require('./routes/content');
 const editRouter = require('./routes/edit');
+const deleteRouter = require('./routes/delete');
 
 const app = express();
 
@@ -64,6 +65,7 @@ app.use('/logout', logoutRouter);
 app.use('/list', listRouter);
 app.use('/content', contentRouter);
 app.use('/edit', editRouter);
+app.use('/delete', deleteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
